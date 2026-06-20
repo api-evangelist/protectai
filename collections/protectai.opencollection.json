@@ -1,0 +1,143 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "LLM Guard API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "System",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Service metadata.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8000/"
+          },
+          "docs": "Returns basic service and version information for the running LLM Guard API."
+        },
+        {
+          "info": {
+            "name": "Liveness probe.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8000/healthz"
+          },
+          "docs": "Returns the liveness status of the API process."
+        },
+        {
+          "info": {
+            "name": "Readiness probe.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8000/readyz"
+          },
+          "docs": "Returns readiness once scanners are loaded and the API can serve scan requests."
+        },
+        {
+          "info": {
+            "name": "Prometheus metrics.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8000/metrics"
+          },
+          "docs": "Exposes Prometheus-format metrics for the API when metrics are enabled."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Prompt",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Analyze and sanitize a prompt.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:8000/analyze/prompt",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"prompt\": \"<string>\",\n  \"scanners_suppress\": []\n}"
+            }
+          },
+          "docs": "Runs the configured input scanners over the prompt and returns sanitized_prompt, is_valid, and per-scanner risk scores."
+        },
+        {
+          "info": {
+            "name": "Scan a prompt.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:8000/scan/prompt",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"prompt\": \"<string>\",\n  \"scanners_suppress\": []\n}"
+            }
+          },
+          "docs": "Runs the configured input scanners over the prompt and returns is_valid and per-scanner risk scores without modifying the prompt."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Output",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Analyze and sanitize an output.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:8000/analyze/output",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"prompt\": \"<string>\",\n  \"output\": \"<string>\",\n  \"scanners_suppress\": []\n}"
+            }
+          },
+          "docs": "Runs the configured output scanners over the LLM response and returns sanitized_output, is_valid, and per-scanner risk scores."
+        },
+        {
+          "info": {
+            "name": "Scan an output.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:8000/scan/output",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"prompt\": \"<string>\",\n  \"output\": \"<string>\",\n  \"scanners_suppress\": []\n}"
+            }
+          },
+          "docs": "Runs the configured output scanners over the LLM response and returns is_valid and per-scanner risk scores without modifying the output."
+        }
+      ]
+    }
+  ]
+}

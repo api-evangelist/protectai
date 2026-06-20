@@ -1,0 +1,95 @@
+aid: protectai
+name: Protect AI
+review:
+  question: Does Protect AI expose a documented public WebSocket or streaming API?
+  answer: false
+  date: '2026-06-20'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No AsyncAPI document was created. The only documented developer API is the
+    self-hosted LLM Guard REST API, which exposes synchronous request/response
+    /analyze and /scan endpoints over HTTP. There is no documented WebSocket,
+    Server-Sent Events, or other streaming transport on any Protect AI surface,
+    so nothing is in scope for AsyncAPI modeling.
+findings:
+  summary: |
+    Protect AI is an AI/ML security platform acquired by Palo Alto Networks
+    (acquisition completed July 2025; products being folded into the Prisma
+    AIRS platform). Its surface splits sharply between open-source developer
+    tooling and sales-led commercial products.
+
+    Open-source (Apache 2.0): LLM Guard is a Python toolkit of input/output
+    scanners that ships a self-hostable FastAPI service (llm-guard-api) with a
+    real, documented REST API - POST /analyze/prompt, /scan/prompt,
+    /analyze/output, /scan/output plus GET /, /healthz, /readyz, /metrics. The
+    default deployment listens on http://localhost:8000 and supports optional
+    bearer auth configured per deployment. ModelScan is a second open-source
+    project (model serialization-attack scanner) and the engine behind the
+    commercial Guardian product.
+
+    Commercial (sales-led, no public REST API): Guardian (model scanning),
+    Recon (LLM red-teaming), and Layer (runtime protection) are delivered
+    through a portal/platform and do not publish documented public API
+    references. They are catalogued as products without fabricated endpoints.
+  splitNote: |
+    Only LLM Guard's self-hosted API is modeled in openapi/protectai-openapi.yml.
+    Guardian, Recon, and Layer are documented as products in apis.yml with their
+    marketing/doc URLs but no invented endpoints.
+  acquisitionNote: |
+    Palo Alto Networks announced intent to acquire Protect AI in April/May 2025
+    (deal reported around $650-700M) and completed the acquisition in July 2025.
+    Protect AI's capabilities are being integrated into Palo Alto Networks'
+    Prisma AIRS AI security platform; branding for LLM Guard, Guardian, Recon,
+    and Layer was retained at review time, and the open-source projects remain
+    Apache 2.0.
+  transports:
+    - protocol: REST
+      scheme: http
+      baseURL: http://localhost:8000
+      documented: true
+      note: Self-hosted LLM Guard API; synchronous /analyze and /scan endpoints.
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented on any Protect AI surface.
+    - protocol: SSE
+      scheme: https
+      documented: false
+      note: No Server-Sent Events streaming is documented on any Protect AI surface.
+  endpointsConfirmedRest:
+    - GET  http://localhost:8000/
+    - GET  http://localhost:8000/healthz
+    - GET  http://localhost:8000/readyz
+    - GET  http://localhost:8000/metrics
+    - POST http://localhost:8000/analyze/prompt
+    - POST http://localhost:8000/scan/prompt
+    - POST http://localhost:8000/analyze/output
+    - POST http://localhost:8000/scan/output
+sources:
+  - url: https://llm-guard.com/
+    type: Documentation
+    note: LLM Guard documentation site; library and API overview.
+  - url: https://llm-guard.com/api/overview/
+    type: APIReference
+    note: Documents the self-hosted llm-guard-api /analyze and /scan endpoints.
+  - url: https://github.com/protectai/llm-guard
+    type: GitHub
+    note: Apache 2.0 source; llm_guard_api FastAPI app defines the documented routes.
+  - url: https://github.com/protectai/modelscan
+    type: GitHub
+    note: Apache 2.0 model serialization-attack scanner behind the commercial Guardian product.
+  - url: https://protectai.com/
+    type: Website
+    note: Lists Guardian, Recon, Layer (commercial) and the Palo Alto Networks acquisition / Prisma AIRS.
+  - url: https://www.paloaltonetworks.com/company/press/2025/palo-alto-networks-completes-acquisition-of-protect-ai
+    type: PressRelease
+    note: Confirms completion of the Palo Alto Networks acquisition of Protect AI.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    Only synchronous REST is documented (and only for the open-source LLM Guard
+    API). No streaming or WebSocket surface exists on any Protect AI product, so
+    no AsyncAPI document was authored. The commercial Guardian/Recon/Layer
+    products are catalogued as products without fabricated endpoints.

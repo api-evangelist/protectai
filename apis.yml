@@ -1,0 +1,111 @@
+aid: protectai
+url: https://raw.githubusercontent.com/api-evangelist/protectai/refs/heads/main/apis.yml
+name: Protect AI
+kind: company
+description: Protect AI is an AI/ML security platform (now part of Palo Alto Networks)
+  whose products secure the AI lifecycle from model selection to runtime. Its developer
+  surface centers on LLM Guard, an open-source Python toolkit of prompt and output
+  scanners that ships a self-hostable REST API for real-time input/output sanitization.
+  Commercial products - Guardian (model scanning), Recon (LLM red-teaming), and Layer
+  (runtime protection) - are delivered through a portal under sales-led terms.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- AI
+- ML
+- Security
+- LLM
+- Guardrails
+created: '2026-06-20'
+modified: '2026-06-20'
+specificationVersion: '0.19'
+apis:
+- aid: protectai:llm-guard-scanners
+  name: LLM Guard (Scanners)
+  tags:
+  - LLM
+  - Guardrails
+  - Prompt Injection
+  - PII
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://llm-guard.com/api/overview/
+  baseURL: http://localhost:8000
+  properties:
+  - url: https://llm-guard.com/
+    type: Documentation
+  - url: https://llm-guard.com/api/overview/
+    type: APIReference
+  - url: openapi/protectai-openapi.yml
+    type: OpenAPI
+  - url: https://github.com/protectai/llm-guard
+    type: GitHub
+  description: Open-source (Apache 2.0) toolkit of input and output scanners that detect,
+    redact, and sanitize LLM prompts and responses for prompt injection, PII, toxicity,
+    secrets, and more. The llm-guard-api service wraps the library in a self-hostable
+    FastAPI app exposing /analyze and /scan endpoints for prompts and outputs.
+- aid: protectai:guardian-model-scanning
+  name: Guardian (Model Scanning)
+  tags:
+  - Model Scanning
+  - Supply Chain
+  - MLSecOps
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://protectai.com/guardian
+  baseURL: https://protectai.com/guardian
+  properties:
+  - url: https://protectai.com/guardian
+    type: Documentation
+  - url: https://github.com/protectai/modelscan
+    type: GitHub
+  description: Commercial AI model security product that scans first- and third-party
+    models for serialization attacks, malicious code, and supply-chain threats before
+    they reach production. The open-source ModelScan project (Apache 2.0) provides
+    the underlying model-scanning engine; Guardian itself is a sales-led platform
+    without a documented public REST API.
+- aid: protectai:recon-red-teaming
+  name: Recon (Red-Teaming)
+  tags:
+  - Red Teaming
+  - Adversarial Testing
+  - LLM
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://protectai.com/recon
+  baseURL: https://protectai.com/recon
+  properties:
+  - url: https://protectai.com/recon
+    type: Documentation
+  description: Commercial automated red-teaming product that rigorously tests LLM and
+    GenAI applications for vulnerabilities, jailbreaks, and policy violations. Delivered
+    as a sales-led platform; no public REST API surface is documented.
+- aid: protectai:layer-runtime
+  name: Layer (Runtime)
+  tags:
+  - Runtime Security
+  - Observability
+  - Threat Detection
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://protectai.com/layer
+  baseURL: https://protectai.com/layer
+  properties:
+  - url: https://protectai.com/layer
+    type: Documentation
+  description: Commercial runtime security product that monitors and controls AI applications
+    in production with deep visibility and inline threat prevention. Delivered as a
+    sales-led platform; no public REST API surface is documented.
+common:
+- type: GitHubOrganization
+  url: https://github.com/protectai
+- type: LinkedIn
+  url: https://www.linkedin.com/company/protect-ai
+- type: Website
+  url: https://protectai.com/
+- type: Documentation
+  url: https://llm-guard.com/
+- type: Plans
+  url: plans/protectai-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/protectai-rate-limits.yml
+- type: FinOps
+  url: finops/protectai-finops.yml
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

@@ -1,0 +1,101 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Protect AI
+providerId: protectai
+created: '2026-06-20'
+modified: '2026-06-20'
+reconciled: false
+tags:
+- AI
+- ML
+- Security
+- LLM
+- Guardrails
+- Plans
+description: >-
+  Protect AI splits cleanly into two pricing models. The developer-facing LLM
+  Guard (and ModelScan) are free, open-source (Apache 2.0) software that you
+  self-host with no per-call or license cost - you pay only for the
+  infrastructure you run them on. The commercial platform products - Guardian
+  (model scanning), Recon (red-teaming), and Layer (runtime) - are sales-led
+  with no published list pricing; pricing is negotiated per deployment, now
+  also available through Palo Alto Networks as part of the Prisma AIRS
+  platform. Specific commercial rates are not reconciled in this artifact.
+notes: >-
+  Open-source pricing is verifiable from the Apache 2.0 licenses on the
+  llm-guard and modelscan repositories. Commercial pricing is not publicly
+  listed and requires contacting Protect AI / Palo Alto Networks sales;
+  confirm on reconciliation.
+sources:
+- https://github.com/protectai/llm-guard
+- https://github.com/protectai/modelscan
+- https://protectai.com/
+- https://www.paloaltonetworks.com/prisma/prisma-airs
+plans:
+- id: protectai-llm-guard-oss
+  name: LLM Guard (Open Source)
+  type: free
+  description: >-
+    Self-hosted, Apache 2.0 prompt/output scanner library and FastAPI service.
+    Free to use and deploy; you bear only your own compute and operations cost.
+  entries:
+  - label: LLM Guard Library + API
+    name: llm_guard_oss
+    type: flat
+    metric: license
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: free (Apache 2.0, self-hosted)
+    userMultiplied: false
+  elements:
+  - name: Input Scanners
+  - name: Output Scanners
+  - name: Self-Hosted llm-guard-api
+- id: protectai-modelscan-oss
+  name: ModelScan (Open Source)
+  type: free
+  description: >-
+    Self-hosted, Apache 2.0 model serialization-attack scanner; the open-source
+    engine behind the commercial Guardian product.
+  entries:
+  - label: ModelScan CLI / Library
+    name: modelscan_oss
+    type: flat
+    metric: license
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: free (Apache 2.0, self-hosted)
+    userMultiplied: false
+  elements:
+  - name: Pickle / H5 / SavedModel Scanning
+- id: protectai-commercial
+  name: Commercial Platform (Guardian / Recon / Layer)
+  type: enterprise
+  description: >-
+    Sales-led commercial AI security platform covering model scanning
+    (Guardian), automated red-teaming (Recon), and runtime protection (Layer),
+    now offered through Palo Alto Networks Prisma AIRS. No public list pricing.
+  entries:
+  - label: Enterprise Agreement
+    name: enterprise
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: Guardian Model Scanning
+  - name: Recon Red-Teaming
+  - name: Layer Runtime Protection
+  - name: Prisma AIRS Integration
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

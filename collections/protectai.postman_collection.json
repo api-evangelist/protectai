@@ -1,0 +1,200 @@
+{
+  "info": {
+    "name": "LLM Guard API",
+    "description": "Self-hostable REST API for Protect AI's open-source (Apache 2.0) LLM Guard toolkit. Exposes /analyze and /scan endpoints for prompts and outputs via the llm-guard-api FastAPI service. Commercial Protect AI products (Guardian, Recon, Layer) do not publish a public REST API and are not included.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8000"
+    }
+  ],
+  "item": [
+    {
+      "name": "System",
+      "item": [
+        {
+          "name": "Service metadata.",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/",
+              "host": ["{{baseUrl}}"],
+              "path": [""]
+            },
+            "description": "Returns basic service and version information for the running LLM Guard API."
+          }
+        },
+        {
+          "name": "Liveness probe.",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/healthz",
+              "host": ["{{baseUrl}}"],
+              "path": ["healthz"]
+            },
+            "description": "Returns the liveness status of the API process."
+          }
+        },
+        {
+          "name": "Readiness probe.",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/readyz",
+              "host": ["{{baseUrl}}"],
+              "path": ["readyz"]
+            },
+            "description": "Returns readiness once scanners are loaded and the API can serve scan requests."
+          }
+        },
+        {
+          "name": "Prometheus metrics.",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/metrics",
+              "host": ["{{baseUrl}}"],
+              "path": ["metrics"]
+            },
+            "description": "Exposes Prometheus-format metrics for the API when metrics are enabled."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Prompt",
+      "item": [
+        {
+          "name": "Analyze and sanitize a prompt.",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"prompt\": \"<string>\",\n  \"scanners_suppress\": []\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/analyze/prompt",
+              "host": ["{{baseUrl}}"],
+              "path": ["analyze", "prompt"]
+            },
+            "description": "Runs the configured input scanners over the prompt and returns sanitized_prompt, is_valid, and per-scanner risk scores."
+          }
+        },
+        {
+          "name": "Scan a prompt.",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"prompt\": \"<string>\",\n  \"scanners_suppress\": []\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/scan/prompt",
+              "host": ["{{baseUrl}}"],
+              "path": ["scan", "prompt"]
+            },
+            "description": "Runs the configured input scanners over the prompt and returns is_valid and per-scanner risk scores without modifying the prompt."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Output",
+      "item": [
+        {
+          "name": "Analyze and sanitize an output.",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"prompt\": \"<string>\",\n  \"output\": \"<string>\",\n  \"scanners_suppress\": []\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/analyze/output",
+              "host": ["{{baseUrl}}"],
+              "path": ["analyze", "output"]
+            },
+            "description": "Runs the configured output scanners over the LLM response and returns sanitized_output, is_valid, and per-scanner risk scores."
+          }
+        },
+        {
+          "name": "Scan an output.",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"prompt\": \"<string>\",\n  \"output\": \"<string>\",\n  \"scanners_suppress\": []\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/scan/output",
+              "host": ["{{baseUrl}}"],
+              "path": ["scan", "output"]
+            },
+            "description": "Runs the configured output scanners over the LLM response and returns is_valid and per-scanner risk scores without modifying the output."
+          }
+        }
+      ]
+    }
+  ]
+}

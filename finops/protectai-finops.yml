@@ -1,0 +1,86 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Protect AI
+providerId: protectai
+created: '2026-06-20'
+modified: '2026-06-20'
+reconciled: false
+tags:
+- AI
+- ML
+- Security
+- LLM
+- Guardrails
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of Protect AI spend. Cost falls into two distinct shapes. The
+  open-source LLM Guard and ModelScan carry no license or per-call fee; their
+  cost is entirely the self-hosted infrastructure (compute, GPU, storage,
+  operations) you run them on. The commercial platform (Guardian, Recon, Layer,
+  now via Palo Alto Networks Prisma AIRS) is a sales-led subscription whose
+  charges are governed by contract and are not publicly metered. Specific
+  commercial rates are not reconciled here.
+notes: >-
+  Track open-source LLM Guard cost as infrastructure spend in your existing
+  cloud FinOps practice. Treat commercial Protect AI / Prisma AIRS charges as
+  contracted subscription spend; verify meters against your agreement on
+  reconciliation.
+sources:
+- https://github.com/protectai/llm-guard
+- https://github.com/protectai/modelscan
+- https://protectai.com/
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Protect AI
+serviceCategory: Security
+billingModel:
+  pricingCategory: Subscription
+  billingFrequency: Annual
+  billingCurrency: USD
+  chargeCategories:
+  - Usage
+  - Purchase
+focusColumns:
+  ServiceName: Protect AI Platform
+  ServiceCategory: Security
+  ProviderName: Protect AI
+  PublisherName: Protect AI
+  InvoiceIssuerName: Palo Alto Networks
+  BillingCurrency: USD
+  ChargeCategory: Purchase
+  PricingCategory: Subscription
+meters:
+- name: self_hosted_compute_hours
+  description: Compute hours running the self-hosted LLM Guard API and ModelScan (your infra cost, not a Protect AI charge).
+  unit: hours
+  aggregation: sum
+  dimensions:
+  - account
+  - deployment
+- name: commercial_subscription
+  description: Contracted subscription for Guardian / Recon / Layer; charged per agreement, not publicly metered.
+  unit: contract
+  aggregation: sum
+  dimensions:
+  - account
+  - product
+principles:
+- name: Visibility
+  description: Attribute self-hosted LLM Guard cost to its host infrastructure tags; track commercial subscription line items from the Protect AI / Palo Alto Networks invoice.
+- name: Allocation
+  description: Tag LLM Guard deployments per workload/team; map commercial seats and products to internal cost centers.
+- name: Optimization
+  description: Prefer self-hosted open-source LLM Guard where it meets requirements; right-size scanner sets and worker counts to cut compute; scope commercial products to genuine coverage gaps.
+- name: Accountability
+  description: Assign owners per deployment and per commercial product; review infra and subscription spend against budget.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

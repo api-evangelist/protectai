@@ -1,0 +1,54 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Protect AI
+providerId: protectai
+created: '2026-06-20'
+modified: '2026-06-20'
+reconciled: false
+tags:
+- AI
+- ML
+- Security
+- LLM
+- Guardrails
+- Rate Limiting
+- Quotas
+- Throttling
+description: >-
+  The primary developer surface, the LLM Guard API, is self-hosted: there is no
+  vendor-imposed rate limit. Throughput is bounded only by the resources of the
+  deployment you operate (CPU/GPU, worker count, model load), and operators may
+  add their own gateway-level limits. The commercial platform products
+  (Guardian, Recon, Layer) run as managed services whose limits are governed by
+  account agreements and are not publicly documented. No specific per-endpoint
+  values are reconciled in this artifact.
+notes: >-
+  Self-hosted LLM Guard has no provider rate limit; tune Uvicorn workers and
+  scanner selection for throughput. Commercial product limits depend on the
+  Protect AI / Palo Alto Networks agreement; verify on reconciliation.
+sources:
+- https://llm-guard.com/api/overview/
+- https://github.com/protectai/llm-guard
+- https://protectai.com/
+responseCodes:
+  throttled: 429
+limits:
+- name: LLM Guard API (Self-Hosted)
+  scope: deployment
+  metric: requests
+  limit: no provider-imposed limit
+  notes: Bounded by your own compute and worker configuration; add gateway limits as needed.
+- name: Guardian / Recon / Layer (Commercial)
+  scope: account
+  metric: requests
+  limit: see account agreement
+  notes: Managed-service limits set by contract; not publicly documented.
+policies:
+- name: Self-Hosted Throughput
+  description: Scale LLM Guard horizontally and suppress unused scanners to raise effective throughput; no vendor quota applies.
+- name: Backoff Strategy
+  description: Clients should implement exponential backoff with jitter and honor Retry-After when fronting LLM Guard with a gateway or calling commercial endpoints.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
