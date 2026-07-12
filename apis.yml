@@ -92,6 +92,10 @@ apis:
     in production with deep visibility and inline threat prevention. Delivered as a
     sales-led platform; no public REST API surface is documented.
 common:
+- type: DomainSecurity
+  url: security/protectai-domain-security.yml
+- type: Authentication
+  url: authentication/protectai-authentication.yml
 - type: GitHubOrganization
   url: https://github.com/protectai
 - type: LinkedIn
@@ -106,6 +110,8 @@ common:
   url: rate-limits/protectai-rate-limits.yml
 - type: FinOps
   url: finops/protectai-finops.yml
+- url: https://protectai.com/blog/rss.xml
+  type: Blog
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com

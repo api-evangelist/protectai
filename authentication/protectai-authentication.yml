@@ -1,0 +1,14 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/protectai-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  description: Optional bearer token authentication, enabled per deployment via the llm-guard-api
+    configuration. Deployments may also run without auth.
+  sources:
+  - openapi/protectai-openapi.yml
