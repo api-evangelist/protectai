@@ -92,6 +92,8 @@ apis:
     in production with deep visibility and inline threat prevention. Delivered as a
     sales-led platform; no public REST API surface is documented.
 common:
+- type: AgenticAccess
+  url: agentic-access/protectai-agentic-access.yml
 - type: DomainSecurity
   url: security/protectai-domain-security.yml
 - type: Authentication
