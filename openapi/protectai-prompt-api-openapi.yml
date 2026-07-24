@@ -1,0 +1,126 @@
+openapi: 3.0.1
+info:
+  title: LLM Guard Output Prompt API
+  description: Self-hostable REST API for LLM Guard, Protect AI's open-source (Apache 2.0) security toolkit for LLM interactions. The llm-guard-api service wraps the llm-guard Python library in a FastAPI application and exposes scanners that detect, redact, and sanitize prompts and outputs for prompt injection, PII, toxicity, secrets, banned topics, and more. Scanners are configured per deployment via scanners.yml. This specification documents the real self-hosted API surface; Protect AI's commercial products (Guardian, Recon, Layer) do not publish a public REST API and are not modeled here.
+  termsOfService: https://protectai.com/terms
+  contact:
+    name: Protect AI / LLM Guard
+    url: https://llm-guard.com/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  version: '1.0'
+servers:
+- url: http://localhost:8000
+  description: Default local llm-guard-api deployment (FastAPI/Uvicorn).
+security:
+- bearerAuth: []
+- {}
+tags:
+- name: Prompt
+paths:
+  /analyze/prompt:
+    post:
+      operationId: analyzePrompt
+      tags:
+      - Prompt
+      summary: Analyze and sanitize a prompt.
+      description: Runs the configured input scanners over the supplied prompt and returns the sanitized prompt, an overall validity flag, and per-scanner risk scores. Scanners that redact or anonymize content (for example PII anonymization) apply their changes to the returned sanitized_prompt.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AnalyzePromptRequest'
+      responses:
+        '200':
+          description: Prompt analyzed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnalyzePromptResponse'
+        '400':
+          description: Invalid request.
+        '403':
+          description: Authentication failed.
+  /scan/prompt:
+    post:
+      operationId: scanPrompt
+      tags:
+      - Prompt
+      summary: Scan a prompt.
+      description: Runs the configured input scanners over the supplied prompt and returns the validity flag and per-scanner risk scores without returning a modified prompt. Use /analyze/prompt when sanitized text is required.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ScanPromptRequest'
+      responses:
+        '200':
+          description: Prompt scanned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScanPromptResponse'
+        '400':
+          description: Invalid request.
+        '403':
+          description: Authentication failed.
+components:
+  schemas:
+    ScanPromptResponse:
+      type: object
+      properties:
+        is_valid:
+          type: boolean
+        scanners:
+          type: object
+          additionalProperties:
+            type: number
+            format: float
+    AnalyzePromptResponse:
+      type: object
+      properties:
+        sanitized_prompt:
+          type: string
+          description: The prompt after applicable scanners have redacted or anonymized content.
+        is_valid:
+          type: boolean
+          description: True when the prompt passed all configured scanners.
+        scanners:
+          type: object
+          description: Map of scanner name to risk score (0.0 - 1.0).
+          additionalProperties:
+            type: number
+            format: float
+    AnalyzePromptRequest:
+      type: object
+      required:
+      - prompt
+      properties:
+        prompt:
+          type: string
+          description: The user prompt to analyze and sanitize.
+        scanners_suppress:
+          type: array
+          description: Optional list of scanner names to skip for this request.
+          items:
+            type: string
+    ScanPromptRequest:
+      type: object
+      required:
+      - prompt
+      properties:
+        prompt:
+          type: string
+          description: The user prompt to scan.
+        scanners_suppress:
+          type: array
+          items:
+            type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Optional bearer token authentication, enabled per deployment via the llm-guard-api configuration. Deployments may also run without auth.

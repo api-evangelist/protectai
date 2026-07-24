@@ -1,0 +1,91 @@
+openapi: 3.0.1
+info:
+  title: LLM Guard Output System API
+  description: Self-hostable REST API for LLM Guard, Protect AI's open-source (Apache 2.0) security toolkit for LLM interactions. The llm-guard-api service wraps the llm-guard Python library in a FastAPI application and exposes scanners that detect, redact, and sanitize prompts and outputs for prompt injection, PII, toxicity, secrets, banned topics, and more. Scanners are configured per deployment via scanners.yml. This specification documents the real self-hosted API surface; Protect AI's commercial products (Guardian, Recon, Layer) do not publish a public REST API and are not modeled here.
+  termsOfService: https://protectai.com/terms
+  contact:
+    name: Protect AI / LLM Guard
+    url: https://llm-guard.com/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  version: '1.0'
+servers:
+- url: http://localhost:8000
+  description: Default local llm-guard-api deployment (FastAPI/Uvicorn).
+security:
+- bearerAuth: []
+- {}
+tags:
+- name: System
+paths:
+  /:
+    get:
+      operationId: getRoot
+      tags:
+      - System
+      summary: Service metadata.
+      description: Returns basic service and version information for the running LLM Guard API.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+  /healthz:
+    get:
+      operationId: getHealthz
+      tags:
+      - System
+      summary: Liveness probe.
+      description: Returns the liveness status of the API process.
+      responses:
+        '200':
+          description: Service is alive.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthStatus'
+  /readyz:
+    get:
+      operationId: getReadyz
+      tags:
+      - System
+      summary: Readiness probe.
+      description: Returns readiness once scanners are loaded and the API can serve scan requests.
+      responses:
+        '200':
+          description: Service is ready.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthStatus'
+  /metrics:
+    get:
+      operationId: getMetrics
+      tags:
+      - System
+      summary: Prometheus metrics.
+      description: Exposes Prometheus-format metrics for the API when metrics are enabled.
+      responses:
+        '200':
+          description: Metrics in Prometheus text exposition format.
+          content:
+            text/plain:
+              schema:
+                type: string
+components:
+  schemas:
+    HealthStatus:
+      type: object
+      properties:
+        status:
+          type: string
+          example: ok
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Optional bearer token authentication, enabled per deployment via the llm-guard-api configuration. Deployments may also run without auth.
