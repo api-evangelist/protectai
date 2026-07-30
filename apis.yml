@@ -8,7 +8,20 @@ description: Protect AI is an AI/ML security platform (now part of Palo Alto Net
   scanners that ships a self-hostable REST API for real-time input/output sanitization.
   Commercial products - Guardian (model scanning), Recon (LLM red-teaming), and Layer
   (runtime protection) - are delivered through a portal under sales-led terms.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/protectai.png
 tags:
 - AI
 - ML
@@ -19,29 +32,6 @@ created: '2026-06-20'
 modified: '2026-06-20'
 specificationVersion: '0.19'
 apis:
-- aid: protectai:llm-guard-scanners
-  name: LLM Guard (Scanners)
-  tags:
-  - LLM
-  - Guardrails
-  - Prompt Injection
-  - PII
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://llm-guard.com/api/overview/
-  baseURL: http://localhost:8000
-  properties:
-  - url: https://llm-guard.com/
-    type: Documentation
-  - url: https://llm-guard.com/api/overview/
-    type: APIReference
-  - url: openapi/protectai-openapi.yml
-    type: OpenAPI
-  - url: https://github.com/protectai/llm-guard
-    type: GitHub
-  description: Open-source (Apache 2.0) toolkit of input and output scanners that detect,
-    redact, and sanitize LLM prompts and responses for prompt injection, PII, toxicity,
-    secrets, and more. The llm-guard-api service wraps the library in a self-hostable
-    FastAPI app exposing /analyze and /scan endpoints for prompts and outputs.
 - aid: protectai:guardian-model-scanning
   name: Guardian (Model Scanning)
   tags:
@@ -56,10 +46,10 @@ apis:
     type: Documentation
   - url: https://github.com/protectai/modelscan
     type: GitHub
-  description: Commercial AI model security product that scans first- and third-party
-    models for serialization attacks, malicious code, and supply-chain threats before
-    they reach production. The open-source ModelScan project (Apache 2.0) provides
-    the underlying model-scanning engine; Guardian itself is a sales-led platform
+  description: >-
+    Commercial AI model security product that scans first- and third-party models for serialization attacks,
+    malicious code, and supply-chain threats before they reach production. The open-source ModelScan project
+    (Apache 2.0) provides the underlying model-scanning engine; Guardian itself is a sales-led platform
     without a documented public REST API.
 - aid: protectai:recon-red-teaming
   name: Recon (Red-Teaming)
@@ -73,9 +63,10 @@ apis:
   properties:
   - url: https://protectai.com/recon
     type: Documentation
-  description: Commercial automated red-teaming product that rigorously tests LLM and
-    GenAI applications for vulnerabilities, jailbreaks, and policy violations. Delivered
-    as a sales-led platform; no public REST API surface is documented.
+  description: >-
+    Commercial automated red-teaming product that rigorously tests LLM and GenAI applications for vulnerabilities,
+    jailbreaks, and policy violations. Delivered as a sales-led platform; no public REST API surface is
+    documented.
 - aid: protectai:layer-runtime
   name: Layer (Runtime)
   tags:
@@ -88,9 +79,58 @@ apis:
   properties:
   - url: https://protectai.com/layer
     type: Documentation
-  description: Commercial runtime security product that monitors and controls AI applications
-    in production with deep visibility and inline threat prevention. Delivered as a
-    sales-led platform; no public REST API surface is documented.
+  description: >-
+    Commercial runtime security product that monitors and controls AI applications in production with
+    deep visibility and inline threat prevention. Delivered as a sales-led platform; no public REST API
+    surface is documented.
+- aid: protectai:protectai-output-api
+  name: Protect AI Output API
+  description: The Output API from Protect AI — 2 operation(s) for output.
+  humanURL: https://llm-guard.com/api/overview/
+  baseURL: http://localhost:8000
+  tags:
+  - Output
+  properties:
+  - type: OpenAPI
+    url: openapi/protectai-output-api-openapi.yml
+  - type: Documentation
+    url: https://llm-guard.com/
+  - type: APIReference
+    url: https://llm-guard.com/api/overview/
+  - type: GitHub
+    url: https://github.com/protectai/llm-guard
+- aid: protectai:protectai-prompt-api
+  name: Protect AI Prompt API
+  description: The Prompt API from Protect AI — 2 operation(s) for prompt.
+  humanURL: https://llm-guard.com/api/overview/
+  baseURL: http://localhost:8000
+  tags:
+  - Prompt
+  properties:
+  - type: OpenAPI
+    url: openapi/protectai-prompt-api-openapi.yml
+  - type: Documentation
+    url: https://llm-guard.com/
+  - type: APIReference
+    url: https://llm-guard.com/api/overview/
+  - type: GitHub
+    url: https://github.com/protectai/llm-guard
+- aid: protectai:protectai-system-api
+  name: Protect AI System API
+  description: The System API from Protect AI — 4 operation(s) for system.
+  humanURL: https://llm-guard.com/api/overview/
+  baseURL: http://localhost:8000
+  tags:
+  - System
+  properties:
+  - type: OpenAPI
+    url: openapi/protectai-system-api-openapi.yml
+  - type: Documentation
+    url: https://llm-guard.com/
+  - type: APIReference
+    url: https://llm-guard.com/api/overview/
+  - type: GitHub
+    url: https://github.com/protectai/llm-guard
 common:
 - type: AgenticAccess
   url: agentic-access/protectai-agentic-access.yml
