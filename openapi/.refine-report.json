@@ -1,0 +1,18 @@
+{
+  "provider": "protectai",
+  "sources": [
+    "protectai-output-api-openapi.yml",
+    "protectai-prompt-api-openapi.yml",
+    "protectai-system-api-openapi.yml"
+  ],
+  "outputs": [
+    "protectai-output-api-openapi.yml",
+    "protectai-prompt-api-openapi.yml",
+    "protectai-system-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
