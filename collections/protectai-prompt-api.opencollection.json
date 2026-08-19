@@ -1,0 +1,54 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "LLM Guard Output Prompt API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Prompt",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Analyze and sanitize a prompt.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:8000/analyze/prompt",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Runs the configured input scanners over the supplied prompt and returns the sanitized prompt, an overall validity flag, and per-scanner risk scores. Scanners that redact or anonymize content (for example PII anonymization) apply their changes to the returned sanitized_prompt."
+        },
+        {
+          "info": {
+            "name": "Scan a prompt.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:8000/scan/prompt",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Runs the configured input scanners over the supplied prompt and returns the validity flag and per-scanner risk scores without returning a modified prompt. Use /analyze/prompt when sanitized text is required."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
