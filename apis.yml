@@ -23,6 +23,12 @@ accessModel:
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/protectai.png
 tags:
+- Artificial Intelligence
+- ML
+- Security
+- LLM
+- Guardrails
+tags_raw:
 - AI
 - ML
 - Security
