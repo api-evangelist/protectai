@@ -8,6 +8,18 @@ description: Protect AI is an AI/ML security platform (now part of Palo Alto Net
   scanners that ships a self-hostable REST API for real-time input/output sanitization.
   Commercial products - Guardian (model scanning), Recon (LLM red-teaming), and Layer
   (runtime protection) - are delivered through a portal under sales-led terms.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
