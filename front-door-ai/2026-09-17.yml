@@ -1,0 +1,33 @@
+# Front Door AI Index — protectai — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: protectai
+  lexicon_version: '1.0'
+  probed_at: '2026-09-17'
+  host: protectai.com
+  final_host: www.paloaltonetworks.com
+  ownership: own
+  owner: protectai
+  shares_host_with: null
+  inherited_from: null
+  verdict: scored
+  score: 99
+  host_score: 99
+  density: 70.56
+  words: 1403
+  tiers:
+    agentic: 21
+    core: 77
+    model: 1
+  ambiguous: 19
+  top_terms:
+    AI: 75
+    agent: 19
+    AI agent: 11
+    prompts: 5
+    agentic: 4
+    Claude: 1
+    LLMs: 1
+    gen ai: 1
+    inference: 1

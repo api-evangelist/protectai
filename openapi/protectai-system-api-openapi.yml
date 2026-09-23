@@ -1,7 +1,7 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: LLM Guard Output System API
-  description: Self-hostable REST API for LLM Guard, Protect AI's open-source (Apache 2.0) security toolkit for LLM interactions. The llm-guard-api service wraps the llm-guard Python library in a FastAPI application and exposes scanners that detect, redact, and sanitize prompts and outputs for prompt injection, PII, toxicity, secrets, banned topics, and more. Scanners are configured per deployment via scanners.yml. This specification documents the real self-hosted API surface; Protect AI's commercial products (Guardian, Recon, Layer) do not publish a public REST API and are not modeled here.
+  title: LLM Guard System API
+  description: Self-hostable REST API for LLM Guard, Protect AI's open-source (Apache 2.0) security toolkit for LLM interactions.
   termsOfService: https://protectai.com/terms
   contact:
     name: Protect AI / LLM Guard
@@ -24,7 +24,7 @@ paths:
       operationId: getRoot
       tags:
       - System
-      summary: Service metadata.
+      summary: Service metadata
       description: Returns basic service and version information for the running LLM Guard API.
       responses:
         '200':
@@ -39,7 +39,7 @@ paths:
       operationId: getHealthz
       tags:
       - System
-      summary: Liveness probe.
+      summary: Liveness probe
       description: Returns the liveness status of the API process.
       responses:
         '200':
@@ -53,7 +53,7 @@ paths:
       operationId: getReadyz
       tags:
       - System
-      summary: Readiness probe.
+      summary: Readiness probe
       description: Returns readiness once scanners are loaded and the API can serve scan requests.
       responses:
         '200':
@@ -67,7 +67,7 @@ paths:
       operationId: getMetrics
       tags:
       - System
-      summary: Prometheus metrics.
+      summary: Prometheus metrics
       description: Exposes Prometheus-format metrics for the API when metrics are enabled.
       responses:
         '200':
