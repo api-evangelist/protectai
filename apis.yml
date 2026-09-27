@@ -10,15 +10,20 @@ description: Protect AI is an AI/ML security platform (now part of Palo Alto Net
   (runtime protection) - are delivered through a portal under sales-led terms.
 deliveryModel:
   model: saas
-  open_source: false
+  license_evidence:
+    not_product:
+    - protectai/llm-guard
+    - protectai/modelscan
+  open_source: unknown
   commercial: true
   callable_host: false
   label: Hosted service · you call their endpoint
-  confidence: medium
+  confidence: low
   source:
   - openapi
   - pricing
-  generated: '2026-08-28'
+  - repository-not-product
+  generated: '2026-09-25'
   method: derived
 accessModel:
   pricing: freemium
@@ -38,7 +43,7 @@ accessModel:
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/protectai.png
 tags:
 - Artificial Intelligence
-- Machine-Learning
+- Machine Learning
 - Security
 - LLM
 - Guardrails
@@ -48,6 +53,7 @@ tags_raw:
 - Security
 - LLM
 - Guardrails
+- Machine-Learning
 created: '2026-06-20'
 modified: '2026-06-20'
 specificationVersion: '0.23'

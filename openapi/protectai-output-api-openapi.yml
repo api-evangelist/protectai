@@ -69,34 +69,6 @@ paths:
           description: Authentication failed.
 components:
   schemas:
-    AnalyzeOutputRequest:
-      type: object
-      required:
-      - prompt
-      - output
-      properties:
-        prompt:
-          type: string
-          description: The originating prompt, used by output scanners for context.
-        output:
-          type: string
-          description: The LLM response to analyze and sanitize.
-        scanners_suppress:
-          type: array
-          items:
-            type: string
-    AnalyzeOutputResponse:
-      type: object
-      properties:
-        sanitized_output:
-          type: string
-        is_valid:
-          type: boolean
-        scanners:
-          type: object
-          additionalProperties:
-            type: number
-            format: float
     ScanOutputRequest:
       type: object
       required:
@@ -121,6 +93,34 @@ components:
           additionalProperties:
             type: number
             format: float
+    AnalyzeOutputResponse:
+      type: object
+      properties:
+        sanitized_output:
+          type: string
+        is_valid:
+          type: boolean
+        scanners:
+          type: object
+          additionalProperties:
+            type: number
+            format: float
+    AnalyzeOutputRequest:
+      type: object
+      required:
+      - prompt
+      - output
+      properties:
+        prompt:
+          type: string
+          description: The originating prompt, used by output scanners for context.
+        output:
+          type: string
+          description: The LLM response to analyze and sanitize.
+        scanners_suppress:
+          type: array
+          items:
+            type: string
   securitySchemes:
     bearerAuth:
       type: http
