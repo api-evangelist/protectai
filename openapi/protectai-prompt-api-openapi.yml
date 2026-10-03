@@ -69,18 +69,13 @@ paths:
           description: Authentication failed.
 components:
   schemas:
-    AnalyzePromptResponse:
+    ScanPromptResponse:
       type: object
       properties:
-        sanitized_prompt:
-          type: string
-          description: The prompt after applicable scanners have redacted or anonymized content.
         is_valid:
           type: boolean
-          description: True when the prompt passed all configured scanners.
         scanners:
           type: object
-          description: Map of scanner name to risk score (0.0 - 1.0).
           additionalProperties:
             type: number
             format: float
@@ -96,13 +91,18 @@ components:
           type: array
           items:
             type: string
-    ScanPromptResponse:
+    AnalyzePromptResponse:
       type: object
       properties:
+        sanitized_prompt:
+          type: string
+          description: The prompt after applicable scanners have redacted or anonymized content.
         is_valid:
           type: boolean
+          description: True when the prompt passed all configured scanners.
         scanners:
           type: object
+          description: Map of scanner name to risk score (0.0 - 1.0).
           additionalProperties:
             type: number
             format: float
