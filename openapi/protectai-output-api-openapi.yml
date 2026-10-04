@@ -69,6 +69,42 @@ paths:
           description: Authentication failed.
 components:
   schemas:
+    AnalyzeOutputResponse:
+      type: object
+      properties:
+        sanitized_output:
+          type: string
+        is_valid:
+          type: boolean
+        scanners:
+          type: object
+          additionalProperties:
+            type: number
+            format: float
+    ScanOutputRequest:
+      type: object
+      required:
+      - prompt
+      - output
+      properties:
+        prompt:
+          type: string
+        output:
+          type: string
+        scanners_suppress:
+          type: array
+          items:
+            type: string
+    ScanOutputResponse:
+      type: object
+      properties:
+        is_valid:
+          type: boolean
+        scanners:
+          type: object
+          additionalProperties:
+            type: number
+            format: float
     AnalyzeOutputRequest:
       type: object
       required:
@@ -85,42 +121,6 @@ components:
           type: array
           items:
             type: string
-    ScanOutputRequest:
-      type: object
-      required:
-      - prompt
-      - output
-      properties:
-        prompt:
-          type: string
-        output:
-          type: string
-        scanners_suppress:
-          type: array
-          items:
-            type: string
-    AnalyzeOutputResponse:
-      type: object
-      properties:
-        sanitized_output:
-          type: string
-        is_valid:
-          type: boolean
-        scanners:
-          type: object
-          additionalProperties:
-            type: number
-            format: float
-    ScanOutputResponse:
-      type: object
-      properties:
-        is_valid:
-          type: boolean
-        scanners:
-          type: object
-          additionalProperties:
-            type: number
-            format: float
   securitySchemes:
     bearerAuth:
       type: http
