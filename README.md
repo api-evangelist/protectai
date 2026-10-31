@@ -1,4 +1,4 @@
-# Protect AI (protectai)
+# Protect AI
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,111 +66,123 @@
 
 Protect AI is an AI/ML security platform (now part of Palo Alto Networks) whose products secure the AI lifecycle from model selection to runtime. Its developer surface centers on LLM Guard, an open-source Python toolkit of prompt and output scanners that ships a self-hostable REST API for real-time input/output sanitization. Commercial products - Guardian (model scanning), Recon (LLM red-teaming), and Layer (runtime protection) - are delivered through a portal under sales-led terms.
 
-> **Acquisition note:** Palo Alto Networks completed its acquisition of Protect AI in July 2025. Protect AI's products are being integrated into the Palo Alto Networks Prisma AIRS AI security platform while retaining their existing branding. The open-source projects (LLM Guard, ModelScan) remain Apache 2.0.
+**Areas:** Artificial Intelligence · Machine Learning · Security · LLM · Guardrails
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/protectai/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/protectai/refs/heads/main/apis.yml)
+## Protect AI on APIs.io
 
-## Tags
+Everything profiled for Protect AI is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/protectai/](https://apis.io/providers/protectai/)** — or go straight to one of the APIs or properties below.
 
-- AI
-- ML
-- Security
-- LLM
-- Guardrails
+### APIs (6)
 
-## Timestamps
+- [Guardian (Model Scanning)](https://apis.io/apis/protectai/guardian-model-scanning/) — Commercial AI model security product that scans first- and third-party models for serialization attacks, malicious code, and supply-chain threats before…
+- [Recon (Red-Teaming)](https://apis.io/apis/protectai/recon-red-teaming/) — Commercial automated red-teaming product that rigorously tests LLM and GenAI applications for vulnerabilities, jailbreaks, and policy violations. Delivered…
+- [Layer (Runtime)](https://apis.io/apis/protectai/layer-runtime/) — Commercial runtime security product that monitors and controls AI applications in production with deep visibility and inline threat prevention. Delivered as…
+- [Protect AI Output API](https://apis.io/apis/protectai/protectai-output-api/) — The Output API from Protect AI — 2 operation(s) for output.
+- [Protect AI Prompt API](https://apis.io/apis/protectai/protectai-prompt-api/) — The Prompt API from Protect AI — 2 operation(s) for prompt.
+- [Protect AI System API](https://apis.io/apis/protectai/protectai-system-api/) — The System API from Protect AI — 4 operation(s) for system.
 
-- **Created:** 2026-06-20
-- **Modified:** 2026-06-20
+### Published properties
 
-## APIs
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-### LLM Guard (Scanners)
+#### Agentic access (1)
 
-Open-source (Apache 2.0) toolkit of input and output scanners that detect, redact, and sanitize LLM prompts and responses for prompt injection, PII, toxicity, secrets, and more. The llm-guard-api service wraps the library in a self-hostable FastAPI app exposing /analyze and /scan endpoints for prompts and outputs.
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- **Human URL:** [https://llm-guard.com/api/overview/](https://llm-guard.com/api/overview/)
-- **Base URL:** `http://localhost:8000`
+- [Protectai Agentic Access](https://apis.io/agentic-access/protectai/protectai-agentic-access/)
 
-#### Tags
+#### Collections (4)
 
-- LLM
-- Guardrails
-- Prompt Injection
-- PII
+Postman and Open Collection request collections.
 
-#### Properties
+- [LLM Guard API](https://apis.io/collections/protectai/open-protectai/)
+- [LLM Guard Output API](https://apis.io/collections/protectai/open-protectai-output-api/)
+- [LLM Guard Output Prompt API](https://apis.io/collections/protectai/open-protectai-prompt-api/)
+- [LLM Guard Output System API](https://apis.io/collections/protectai/open-protectai-system-api/)
 
-- [Documentation](https://llm-guard.com/)
-- [API Reference](https://llm-guard.com/api/overview/)
-- [OpenAPI](openapi/protectai-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [GitHub](https://github.com/protectai/llm-guard)
-- [Postman Collection](collections/protectai.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/protectai.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Security (2)
 
-### Guardian (Model Scanning)
+Authentication, trust centre, and vulnerability disclosure.
 
-Commercial AI model security product that scans first- and third-party models for serialization attacks, malicious code, and supply-chain threats before they reach production. The open-source ModelScan project (Apache 2.0) provides the underlying model-scanning engine; Guardian itself is a sales-led platform without a documented public REST API.
+- [Protectai Authentication](https://apis.io/security/protectai/protectai-authentication/)
+- [Protectai Domain Security](https://apis.io/security/protectai/protectai-domain-security/)
 
-- **Human URL:** [https://protectai.com/guardian](https://protectai.com/guardian)
-- **Base URL:** `https://protectai.com/guardian`
+#### Plans and pricing (1)
 
-#### Tags
+Published plans, tiers and prices.
 
-- Model Scanning
-- Supply Chain
-- MLSecOps
+- [Protectai Plans Pricing](https://apis.io/plans/protectai/protectai-plans-pricing/)
 
-#### Properties
+#### Rate limits (1)
 
-- [Documentation](https://protectai.com/guardian)
-- [GitHub](https://github.com/protectai/modelscan)
+Published request limits.
 
-### Recon (Red-Teaming)
+- [Protectai Rate Limits](https://apis.io/rate-limits/protectai/protectai-rate-limits/)
 
-Commercial automated red-teaming product that rigorously tests LLM and GenAI applications for vulnerabilities, jailbreaks, and policy violations. Delivered as a sales-led platform; no public REST API surface is documented.
+#### FinOps (1)
 
-- **Human URL:** [https://protectai.com/recon](https://protectai.com/recon)
-- **Base URL:** `https://protectai.com/recon`
+What the API costs to run, by operation.
 
-#### Tags
+- [Protectai Finops](https://apis.io/finops/protectai/protectai-finops/)
 
-- Red Teaming
-- Adversarial Testing
-- LLM
+## Where to find this API
 
-#### Properties
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-- [Documentation](https://protectai.com/recon)
-
-### Layer (Runtime)
-
-Commercial runtime security product that monitors and controls AI applications in production with deep visibility and inline threat prevention. Delivered as a sales-led platform; no public REST API surface is documented.
-
-- **Human URL:** [https://protectai.com/layer](https://protectai.com/layer)
-- **Base URL:** `https://protectai.com/layer`
-
-#### Tags
-
-- Runtime Security
-- Observability
-- Threat Detection
-
-#### Properties
-
-- [Documentation](https://protectai.com/layer)
-
-## Common Properties
-
-- [GitHub Organization](https://github.com/protectai)
-- [LinkedIn](https://www.linkedin.com/company/protect-ai)
 - [Website](https://protectai.com/)
 - [Documentation](https://llm-guard.com/)
-- [Plans](plans/protectai-plans-pricing.yml)
-- [Rate Limits](rate-limits/protectai-rate-limits.yml)
-- [Fin Ops](finops/protectai-finops.yml)
+- [Blog](https://protectai.com/blog/rss.xml)
+- [GitHub](https://github.com/protectai)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 22.6** — emerging · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 57.1 |
+| Contract quality | 44.5 |
+| Contract governance | 0.0 |
+| Operational transparency | 7.9 |
+| Developer ergonomics | 22.6 |
+| Access clarity | 7.9 |
+
+**Agent readiness 17.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 10.9** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/protectai/](https://apis.io/providers/protectai/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Protect AI: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/protectai/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
